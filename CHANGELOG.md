@@ -2,6 +2,16 @@
 
 What changed in each release of MegaCapybara. Downloads are on the [releases page](https://github.com/perkel666/MegaCapybara/releases).
 
+## 1.12 (2026-10-05)
+
+- **Faster prompt reading.** About 8-9% faster: 8 prompts of ~11K tokens at once 7.4K -> 8.1K tokens/s, a
+  145K-token prompt 5.2K -> 5.6K tokens/s (small model, RTX 5090).
+- **Faster generation in long conversations.** Each speculative round is 4-9% faster from 8K to 240K tokens of
+  context (up to 20% with long drafts); short conversations are unchanged.
+- **Agents keep their cache while they wait.** A conversation counts as finished only after 20 minutes without a turn,
+  and one whose last tool call runs in the background (`run_in_background`) stays open.
+- The shared context is about 3% smaller (larger buffers for reading prompts).
+
 ## 1.08 (2026-10-04)
 
 - **See where each conversation's context is.** The monitor's Conversations tab shows VRAM, RAM and disk side by
