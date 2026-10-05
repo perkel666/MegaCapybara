@@ -8,7 +8,7 @@ What changed in each release of MegaCapybara. Downloads are on the [releases pag
   later ones copy it in milliseconds. Prompts sent together (a dispatch of agents, or the conversations coming back
   after a restart) wait for the first one instead of each reading it. The engine finds the shared length by itself.
 
-  ![Shared openings: four agents with the same 7.5K-token opening, read four times in 1.12 and once in 1.17](docs/images/shared-openings.gif)
+  ![Shared openings: four agents with the same 20K-token opening, read four times in 1.12 and once in 1.17](docs/images/shared-openings.gif)
 
 - The log says when a conversation cannot be resumed and why, and when a shared opening is kept or reused.
 - **Fixed: agents re-reading their whole conversation every turn (1.12).** Under heavy agent load, 1.12's RAM cache
