@@ -4,14 +4,17 @@ What changed in each release of MegaCapybara. Downloads are on the [releases pag
 
 ## 1.17 (2026-10-05)
 
-- **Agents no longer re-read their whole conversation every turn.** Under heavy agent load the RAM cache could fill
-  Windows' memory limit for the GPU, and conversations lost their resume point (on a busy session 110 turns in 27
-  minutes re-read 4.8M tokens). The cache now counts the memory it really holds and keeps room for every running
-  conversation's resume point.
 - **Shared openings are read once.** Agents that start with the same system prompt and tools read that part once;
   later ones copy it in milliseconds. Prompts sent together (a dispatch of agents, or the conversations coming back
   after a restart) wait for the first one instead of each reading it. The engine finds the shared length by itself.
+
+  ![Shared openings: four agents with the same 7.5K-token opening, read four times in 1.12 and once in 1.17](docs/images/shared-openings.gif)
+
 - The log says when a conversation cannot be resumed and why, and when a shared opening is kept or reused.
+- **Fixed: agents re-reading their whole conversation every turn (1.12).** Under heavy agent load, 1.12's RAM cache
+  could fill Windows' memory limit for the GPU, and conversations lost their resume point (on a busy session 110 turns
+  in 27 minutes re-read 4.8M tokens). 1.17 counts the memory the cache really holds and keeps room for every running
+  conversation's resume point.
 
 ## 1.12 (2026-10-05)
 
