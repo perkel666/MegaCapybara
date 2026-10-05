@@ -2,14 +2,6 @@
 
 What changed in each release of MegaCapybara. Downloads are on the [releases page](https://github.com/perkel666/MegaCapybara/releases).
 
-## 1.22 (2026-10-05)
-
-- **Shared openings use their memory once.** 1.17 read a shared opening once, but every agent still kept its own copy
-  of it in the context pool. Now there is one copy and every agent's context points at it. Measured: 12 agents at once
-  with the same 20K-token opening held 246K tokens of context in 30K tokens of the pool (88% less).
-
-  ![Shared openings in memory: twelve agents with the same 20K-token opening, a copy each in 1.17, one shared copy in 1.22](docs/images/shared-memory.gif)
-
 ## 1.17 (2026-10-05)
 
 - **Shared openings are read once.** Agents that start with the same system prompt and tools read that part once;
