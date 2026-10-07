@@ -206,7 +206,7 @@ Converted from [Qwen/Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B), in f
 
 <sub>Accuracy measured against Qwen's original BF16 weights on 81,880 held-out tokens. KL divergence: 0 is identical,
 lower is closer. Top-1 agreement: how often the most likely next token is the same. Speeds measured on one RTX 5090
-with MegaCapybara 1.34 (DFlash2 with the draft forest, FP8 activations): coding answers up to 2,000 tokens, one agent
+with MegaCapybara 1.35 (DFlash2 with the draft forest, FP8 activations): coding answers up to 2,000 tokens, one agent
 alone, and eight or twelve at once (all of them writing, on a server already running); the launcher shows them for your
 own settings.</sub>
 

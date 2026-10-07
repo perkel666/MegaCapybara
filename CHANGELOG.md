@@ -2,7 +2,7 @@
 
 What changed in each release of MegaCapybara. Downloads are on the [releases page](https://github.com/perkel666/MegaCapybara/releases).
 
-## 1.34 (2026-10-07)
+## 1.35 (2026-10-07)
 
 - **Draft forest.** When you pick DFlash2, the engine now takes the drafter's guesses as a tree: where it is unsure it
   also tries its second and third choices, so a miss on one branch is often caught by another. With several agents,
@@ -17,8 +17,11 @@ What changed in each release of MegaCapybara. Downloads are on the [releases pag
 
   ![Shared openings in memory](docs/images/shared-memory.gif)
 
-- **The model files were re-measured** with this version and their scores updated on Hugging Face: the launcher's
-  projections for DFlash2 are the draft forest's.
+- **The model files were re-measured** with this version (many agents on a server already running) and their scores
+  updated on Hugging Face: the launcher's projections for DFlash2 are the draft forest's. Coding with 8 agents against
+  1.17: Tiny 1,890 -> 2,333, Small 1,755 -> 2,379, Medium 1,638 -> 2,203, Large 1,427 -> 1,953, XXL 1,255 -> 1,645
+  tokens/s; one agent as before. (Replaces v1.34, released earlier the same day with figures measured on a freshly
+  started server.)
 - **Crash and hang reports** in the log (functions and lines; `megacapybara.pdb` ships beside the server) and a dump in
   `logs\`.
 - **Fixed:** a crash when a shared opening was kept with the RAM cache nearly full; the monitor freezing under heavy
