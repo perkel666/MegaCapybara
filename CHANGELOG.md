@@ -2,6 +2,30 @@
 
 What changed in each release of MegaCapybara. Downloads are on the [releases page](https://github.com/perkel666/MegaCapybara/releases).
 
+## 1.34 (2026-10-07)
+
+- **Draft forest.** When you pick DFlash2, the engine now takes the drafter's guesses as a tree: where it is unsure it
+  also tries its second and third choices, so a miss on one branch is often caught by another. With several agents,
+  all their trees share one check and the rows go where guesses are likeliest to be kept. Against 1.17: 12 agents
+  about 26% faster on code and 20% on prose; one agent about 5% faster on code and 10% on prose.
+
+  ![Draft forest vs DFlash2 vs MTP](docs/images/draft-forest.gif)
+
+- **More tokens per second in total with many agents:** cheaper shared steps, and no ~25 ms stall per new request.
+- **Shared openings use their memory once:** agents with the same opening share one copy of it in the context pool
+  (12 agents, a 20K-token opening: 88% less pool), and it moves to the RAM cache as one copy.
+
+  ![Shared openings in memory](docs/images/shared-memory.gif)
+
+- **The model files were re-measured** with this version and their scores updated on Hugging Face: the launcher's
+  projections for DFlash2 are the draft forest's.
+- **Crash and hang reports** in the log (functions and lines; `megacapybara.pdb` ships beside the server) and a dump in
+  `logs\`.
+- **Fixed:** a crash when a shared opening was kept with the RAM cache nearly full; the monitor freezing under heavy
+  load; agents re-reading their whole conversation after part of its cache went to RAM; a cached conversation read
+  again when VRAM was briefly short; all running conversations ending at once when a moved conversation came back with
+  the RAM cache full; the monitor listing idle conversations as held in VRAM.
+
 ## 1.17 (2026-10-05)
 
 - **Shared openings are read once.** Agents that start with the same system prompt and tools read that part once;

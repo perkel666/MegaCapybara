@@ -6,7 +6,7 @@
 
 <p align="center">
   <b>The fastest inference engine for Qwen3.8-27B on the NVIDIA GeForce RTX 5090.</b><br>
-  Up to 500 tokens/s for one coding agent and up to 2,000 tokens/s for a team of them, on Windows 11 and Linux.<br>
+  Over 500 tokens/s for one coding agent and over 2,600 tokens/s for a team of twelve, on Windows 11 and Linux.<br>
   A launcher sets it up and shows, before you load, what every setting costs in accuracy, speed and memory.
 </p>
 
@@ -196,16 +196,18 @@ Linux, the launcher uses the desktop's own X11, Cairo, Pango and libcurl, and of
 Converted from [Qwen/Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B), in five sizes:
 [perkel/Qwen3.8-27B-MC](https://huggingface.co/perkel/Qwen3.8-27B-MC).
 
-| Size | VRAM | KL divergence | Top-1 agreement | Good for |
-|---|--:|--:|--:|---|
-| Tiny | 12.70 GiB | 0.0582 | 92.7% | the most speed and context |
-| Small | 13.67 GiB | 0.0478 | 93.8% | speed, with a little more accuracy |
-| Medium | 15.39 GiB | 0.0298 | 95.2% | the balance, and the presets' choice |
-| Large | 18.66 GiB | 0.0081 | 97.7% | answers close to the original |
-| XXL | 23.58 GiB | 0.0051 | 98.3% | the closest to the original, less room for context |
+| Size | VRAM | KL divergence | Top-1 agreement | Coding, 1 agent | Coding, 8 agents | Good for |
+|---|--:|--:|--:|--:|--:|---|
+| Tiny | 12.70 GiB | 0.0582 | 92.7% | 537 tok/s | 2,226 tok/s | the most speed and context |
+| Small | 13.67 GiB | 0.0478 | 93.8% | 499 tok/s | 2,045 tok/s | speed, with a little more accuracy |
+| Medium | 15.39 GiB | 0.0298 | 95.2% | 436 tok/s | 1,811 tok/s | the balance, and the presets' choice |
+| Large | 18.66 GiB | 0.0081 | 97.7% | 372 tok/s | 1,716 tok/s | answers close to the original |
+| XXL | 23.58 GiB | 0.0051 | 98.3% | 307 tok/s | 1,398 tok/s | the closest to the original, less room for context |
 
-<sub>Both measured against Qwen's original BF16 weights on 81,880 held-out tokens. KL divergence: 0 is identical,
-lower is closer. Top-1 agreement: how often the most likely next token is the same.</sub>
+<sub>Accuracy measured against Qwen's original BF16 weights on 81,880 held-out tokens. KL divergence: 0 is identical,
+lower is closer. Top-1 agreement: how often the most likely next token is the same. Speeds measured on one RTX 5090
+with MegaCapybara 1.34 (DFlash2 with the draft forest, FP8 activations): coding answers up to 2,000 tokens, one agent
+alone and eight at once; the launcher shows them for your own settings.</sub>
 
 The same five sizes also come uncensored, converted from an abliterated release (one with the refusals removed):
 [perkel/Qwen3.8-27B-Uncensored-MC](https://huggingface.co/perkel/Qwen3.8-27B-Uncensored-MC).
