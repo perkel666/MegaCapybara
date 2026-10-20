@@ -227,8 +227,13 @@ how many each setting leaves in VRAM and what that costs in speed.
 | Small | 3 bits, 42.6 GiB | 0.061 | 91.7% | 221 tok/s (MTP) | 186 tok/s (MTP) | answers closer to the original |
 
 <sub>Accuracy against the BF16 original on held-out text. Speeds on one RTX 5090 with MegaCapybara 1.36, a small
-context (Tiny ~20,000 of 24,576 experts in VRAM, Small ~13,000): Tiny with the DFlash2 drafter, Small measured with its
-MTP layer. A larger context leaves fewer experts in VRAM and lowers them.</sub>
+context (Tiny ~20,000 of 24,576 experts in VRAM, Small ~13,000). Tiny was measured with DFlash2 and Small with MTP.
+A larger context leaves fewer experts in VRAM and lowers them.</sub>
+
+Flash-Next comes with two speculative decoding methods. **DFlash2** is the default: a separate drafter model, downloaded
+with the model, guesses the next tokens and Flash-Next checks them. **MTP** uses a prediction layer built into the model
+and needs no extra download. Both give exactly the model's own answers. With Tiny, DFlash2 writes code at 498 tokens/s
+for one agent and 993 for eight at once, against 440 and 779 with MTP.
 
 Uncensored Tiny and Small: [perkel/Qwen3.8-Flash-Next-Uncensored-MC](https://huggingface.co/perkel/Qwen3.8-Flash-Next-Uncensored-MC).
 
