@@ -5,7 +5,7 @@
 <h1 align="center">MegaCapybara</h1>
 
 <p align="center">
-  <b>The fastest inference engine for Qwen3.8-27B on the NVIDIA GeForce RTX 5090.</b><br>
+  <b>The fastest inference engine for Qwen3.8-27B and Qwen3.8 Flash-Next on the NVIDIA GeForce RTX 5090.</b><br>
   Over 500 tokens/s for one coding agent and up to 2,800 tokens/s for a team of twelve, on Windows 11 and Linux.<br>
   A launcher sets it up and shows, before you load, what every setting costs in accuracy, speed and memory.
 </p>
@@ -186,7 +186,8 @@ Every option is in [docs/USAGE.md](docs/USAGE.md) and in `megacapybara --help`.
 - An **NVIDIA GeForce RTX 5090** with driver **R580** or newer.
 - **Windows 11** x64, or **Linux** x86-64 with glibc 2.38 or newer (Ubuntu 24.04, Debian 13, Fedora 39 or newer; WSL2
   works too).
-- **32 GB of RAM** or more, and **15-30 GB of disk** per model.
+- **32 GB of RAM** or more, and **15-30 GB of disk** per model (Qwen3.8 Flash-Next: **64 GB of RAM** and 65-80 GB of
+  disk).
 
 Nothing else to install: the programs are self-contained and the folder can live anywhere you can write to. On
 Linux, the launcher uses the desktop's own X11, Cairo, Pango and libcurl, and offers to install any that are missing.
@@ -212,6 +213,24 @@ own settings.</sub>
 
 The same five sizes also come uncensored, converted from an abliterated release (one with the refusals removed):
 [perkel/Qwen3.8-27B-Uncensored-MC](https://huggingface.co/perkel/Qwen3.8-27B-Uncensored-MC).
+
+### Qwen3.8 Flash-Next
+
+Converted from turboderp's EXL3 quantization of [Qwen/Qwen3.8-Flash-Next](https://huggingface.co/Qwen/Qwen3.8-Flash-Next)
+(177B parameters, 512 experts per layer): [perkel/Qwen3.8-Flash-Next-MC](https://huggingface.co/perkel/Qwen3.8-Flash-Next-MC).
+Its experts don't all fit in 32 GB, so the most used stay in VRAM and the rest are read from RAM; the launcher shows
+how many each setting leaves in VRAM and what that costs in speed.
+
+| Size | Experts | KL divergence | Top-1 agreement | Coding, 1 agent | 8 agents | Good for |
+|---|--:|--:|--:|--:|--:|---|
+| Tiny | 2 bits, 28.6 GiB | 0.145 | 86.7% | 498 tok/s | 993 tok/s | speed and long context |
+| Small | 3 bits, 42.6 GiB | 0.061 | 91.7% | 221 tok/s (MTP) | 186 tok/s (MTP) | answers closer to the original |
+
+<sub>Accuracy against the BF16 original on held-out text. Speeds on one RTX 5090 with MegaCapybara 1.36, a small
+context (Tiny ~20,000 of 24,576 experts in VRAM, Small ~13,000): Tiny with the DFlash2 drafter, Small measured with its
+MTP layer. A larger context leaves fewer experts in VRAM and lowers them.</sub>
+
+Uncensored Tiny and Small: [perkel/Qwen3.8-Flash-Next-Uncensored-MC](https://huggingface.co/perkel/Qwen3.8-Flash-Next-Uncensored-MC).
 
 ## License
 

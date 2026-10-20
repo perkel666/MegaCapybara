@@ -2,6 +2,27 @@
 
 What changed in each release of MegaCapybara. Downloads are on the [releases page](https://github.com/perkel666/MegaCapybara/releases).
 
+## 1.36 (2026-10-20)
+
+- **New model: Qwen3.8 Flash-Next** (177B mixture of experts) on one RTX 5090: the most used experts in VRAM, the rest
+  read from RAM, an expert cache adapting while serving. Tiny (2-bit experts) and Small (3-bit), plus Uncensored Tiny
+  and Small, on [perkel/Qwen3.8-Flash-Next-MC](https://huggingface.co/perkel/Qwen3.8-Flash-Next-MC) and
+  [perkel/Qwen3.8-Flash-Next-Uncensored-MC](https://huggingface.co/perkel/Qwen3.8-Flash-Next-Uncensored-MC).
+- **DFlash2 for Flash-Next** with incoai's drafter (its own MTP layer when the drafter is missing): Tiny, coding, one
+  agent 440 -> 498 tokens/s, eight at once 779 -> 993 against MTP. Draft trees for one conversation, sampled requests
+  included.
+- Flash-Next reads **images** (its vision tower kept in RAM), long context **up to 1M tokens** (KV at 8, 6 or 4 bits),
+  and **many agents' prompts in one pass** over the experts in RAM (12 agents' fresh prompts 13.0 -> 6.7 s).
+- **Many agents without speculation share one step** (all models): 27B Medium, eight at once 92 -> 622 tokens/s.
+- **Images faster** (all models): the vision tower's attention on tensor cores (a 1 MP image 221 -> 50 ms).
+- **Caches kept better with many agents:** a short opening many requests share is kept beside long ones; conversations
+  that just answered are no longer dropped first when the RAM cache is full.
+- **Fixed:** characters spanning two tokens (emoji) mangled in tool-call arguments; the OpenAI API's loop-guard stop
+  now reports `finish_reason` "length"; "save KV: out of memory" with many experts or caches in RAM; no-thinking
+  requests in every common form; no per-request image cap.
+- **Launcher:** downloads grouped by model family, one Download per model with everything it needs; the monitor shows a
+  queued request and its cache once.
+
 ## 1.35 (2026-10-07)
 
 - **Draft forest.** When you pick DFlash2, the engine now takes the drafter's guesses as a tree: where it is unsure it
