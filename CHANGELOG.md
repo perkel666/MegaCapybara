@@ -14,13 +14,9 @@ What changed in each release of MegaCapybara. Downloads are on the [releases pag
 - **Uncensored versions of both sizes are available too.** The launcher downloads all four from Hugging Face:
   [perkel/Qwen3.8-Flash-Next-MC](https://huggingface.co/perkel/Qwen3.8-Flash-Next-MC) and
   [perkel/Qwen3.8-Flash-Next-Uncensored-MC](https://huggingface.co/perkel/Qwen3.8-Flash-Next-Uncensored-MC).
-- **Flash-Next comes with two ways to write faster: DFlash2, the default, and MTP.** Both are speculative decoding. A
-  small, fast helper guesses the next few tokens, and the model checks all the guesses in one step and keeps the ones it
-  agrees with, so the answers are exactly the model's own. DFlash2 uses a separate drafter model, which the launcher
-  downloads with the model. MTP uses a prediction layer built into Flash-Next itself, needs no extra download, and is
-  used when the DFlash2 drafter is missing. You can choose either in the launcher.
-
-  Speed with Tiny on one RTX 5090, in tokens per second:
+- **Flash-Next comes with two ways to write faster: DFlash2, the default, and MTP.** DFlash2 uses a separate drafter
+  that the launcher downloads with the model. MTP uses a layer built into the model. Both give exactly the model's own
+  answers. Speed with Tiny, in tokens per second:
 
   | | No speculation | MTP | DFlash2 (default) |
   |---|--:|--:|--:|
@@ -29,13 +25,10 @@ What changed in each release of MegaCapybara. Downloads are on the [releases pag
   | Coding, four agents at once | | 678 | 789 |
   | Coding, eight agents at once | | 779 | 993 |
 
-  With the Uncensored models, DFlash2 is still faster for one agent, but MTP can be faster with eight or more agents at
-  once, because the drafter was trained on the original model's answers.
 - **Flash-Next can read images.** Its vision encoder stays in RAM, so it takes no GPU memory away from the experts.
 - **Flash-Next handles long conversations of up to a million tokens.** You can store the context at 8, 6 or 4 bits per
   value to fit more of it.
-- **Many agents start faster on Flash-Next.** When several agents send new prompts at the same time, the engine reads
-  them together in one pass. Twelve agents' new prompts took 6.7 seconds instead of 13.
+- **Suggested: 64 GB of RAM** for Flash-Next.
 
 ### All models
 
