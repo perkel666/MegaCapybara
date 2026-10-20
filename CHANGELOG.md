@@ -35,12 +35,12 @@ What changed in each release of MegaCapybara. Downloads are on the [releases pag
 - **Agents that don't use a drafter now share their work.** Before, each one ran in turn. Now they are processed
   together, so eight agents on the 27B Medium model reach 622 tokens per second instead of 92.
 - **Images are processed faster.** A one-megapixel image now takes 50 milliseconds instead of 221.
-- **A short opening that many requests share is now kept in memory.** Before, it could be pushed out by longer ones
-  and read again every time.
-- **Conversations that have just answered are no longer the first to be removed** when the RAM cache is full.
 
 ### Fixed
 
+- A short opening that many requests share is now kept in memory. Before, it could be pushed out by longer ones
+  and read again every time.
+- Conversations that have just answered are no longer the first to be removed when the RAM cache is full.
 - Emoji and other characters that span two tokens came out as `�` in tool-call arguments, which could break an agent's
   file edits.
 - When the loop guard stops an answer, the OpenAI API now reports `finish_reason` "length". It used to report
