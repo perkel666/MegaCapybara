@@ -2,6 +2,19 @@
 
 What changed in each release of MegaCapybara. Downloads are on the [releases page](https://github.com/perkel666/MegaCapybara/releases).
 
+## 1.37 (2026-10-21)
+
+### Fixed
+
+- A conversation could stop working for good when the model wrote `run_in_background` as text, such as `"True"`,
+  instead of `true`. The server answered every later request in that conversation with an empty error 500. Text values
+  are now accepted. ([#3](https://github.com/perkel666/MegaCapybara/issues/3))
+- A conversation could also stop working when an earlier tool call's arguments were not valid JSON. The server
+  answered every later request with error 400. Such a call is now shown to the model without its arguments.
+- A request field of the wrong type, such as `"stream": "true"`, now gets error 400 with a message that says what is
+  wrong. It used to get an empty error 500.
+- The launcher's window title showed version 1.35 in release 1.36.
+
 ## 1.36 (2026-10-20)
 
 ### New model: Qwen3.8 Flash-Next
