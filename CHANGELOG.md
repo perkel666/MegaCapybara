@@ -2,6 +2,14 @@
 
 What changed in each release of MegaCapybara. Downloads are on the [releases page](https://github.com/perkel666/MegaCapybara/releases).
 
+## 1.38 (2026-10-26)
+
+### Fixed
+
+- Tool calls on the OpenAI API now have ids that are unique across the whole conversation. Before, the first tool call
+  of every answer was `call_0`, which broke clients that keep a session log by tool-call id.
+  ([#5](https://github.com/perkel666/MegaCapybara/issues/5))
+
 ## 1.37 (2026-10-21)
 
 ### Fixed
