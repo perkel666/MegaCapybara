@@ -16,6 +16,7 @@ Compiled into the server (`megacapybara.exe` on Windows, `megacapybara` on Linux
 | nlohmann/json | MIT | (c) 2013-2025 Niels Lohmann; contains code by Bjoern Hoehrmann (MIT), Florian Loitsch (MIT), Evan Nemerson (Hedley) and the Abseil Authors (Apache-2.0) |
 | xxHash | BSD-2-Clause | (c) 2012-2021 Yann Collet |
 | stb_image v2.30 | MIT or public domain (either) | Sean Barrett; the Linux programs only (decoding images; Windows uses its own) |
+| libwebp v1.5.0 | BSD-3-Clause | (c) 2010 Google Inc.; the decoder and demuxer only (WebP images) |
 
 ## Data
 

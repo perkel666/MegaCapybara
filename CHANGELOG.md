@@ -2,6 +2,25 @@
 
 What changed in each release of MegaCapybara. Downloads are on the [releases page](https://github.com/perkel666/MegaCapybara/releases).
 
+## 1.39 (2026-11-01)
+
+### New
+
+- **WebP images** are accepted, lossless and lossy. An animated WebP gives its first frame.
+  ([#7](https://github.com/perkel666/MegaCapybara/issues/7))
+- The launcher has a **Prefill policy** setting below Disk cache: Balanced, Decode priority or Prefill priority. It was
+  only in the settings file before. ([#6](https://github.com/perkel666/MegaCapybara/issues/6))
+
+### Fixed
+
+- Unicode noncharacters in a prompt, such as U+FFFF, made the request fail with an error, and every later request of
+  that conversation failed the same way on Windows. They now pass through unchanged.
+  ([#11](https://github.com/perkel666/MegaCapybara/issues/11))
+
+### Removed
+
+- The launcher's agentic coding simulation.
+
 ## 1.38 (2026-10-26)
 
 ### Fixed
