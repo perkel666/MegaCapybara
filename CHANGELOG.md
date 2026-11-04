@@ -2,6 +2,15 @@
 
 What changed in each release of MegaCapybara. Downloads are on the [releases page](https://github.com/perkel666/MegaCapybara/releases).
 
+## 1.40 (2026-11-04)
+
+### Fixed
+
+- The launcher stayed on "Connecting to the server" and showed no statistics when the server listened on `0.0.0.0`, the
+  default and the address for serving a network. The launcher now reads the statistics from the local address while the
+  server stays reachable from the network. ([#13](https://github.com/perkel666/MegaCapybara/issues/13),
+  [#12](https://github.com/perkel666/MegaCapybara/issues/12))
+
 ## 1.39 (2026-11-01)
 
 ### New
